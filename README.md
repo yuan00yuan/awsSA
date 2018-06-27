@@ -1,1 +1,2 @@
-# awsSAforJoefirst part is the ec2 connection problem checklist for joe's doc holder
+# awsSAforJoe
+first part is the ec2 connection problem checklist for joe's doc holder
