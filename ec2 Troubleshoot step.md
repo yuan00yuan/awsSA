@@ -20,19 +20,19 @@ Network error: Connection timed out 或 Error connecting to [instance], reason: 
     1. [打开 Amazon EC2 控制台](https://console.aws.amazon.com/ec2/)。
     2. 在导航窗格中，选择 Instances，然后选择您的实例。
     3. 在 Description 选项卡中，记下 VPC ID 和 Subnet ID 的值。
-    ![图片1](/asstes/ec2-troubleShoot/pic1_vpcIdSubnet.png)
+    ![图片1](/assets/ec2-troubleShoot/pic1_vpcIdSubnet.png)
     4. [打开 Amazon VPC 控制台](https://console.aws.amazon.com/vpc/)
-    5. 在导航窗格中，选择 Internet Gateways。验证是否有 Internet 网关附加到您的 VPC。否则，选择 Create Internet Gateway 以创建 Internet 网关。选择 Internet 网关，然后选择 Attach to VPC 并按照说明将其连接到您的 VPC。![图片2](/asstes/ec2-troubleShoot/pic2_createInternetGateway.png)![图片3](/asstes/ec2-troubleShoot/pic3_attachToVPC.png)
+    5. 在导航窗格中，选择 Internet Gateways。验证是否有 Internet 网关附加到您的 VPC。否则，选择 Create Internet Gateway 以创建 Internet 网关。选择 Internet 网关，然后选择 Attach to VPC 并按照说明将其连接到您的 VPC。![图片2](/assets/ec2-troubleShoot/pic2_createInternetGateway.png)![图片3](/assets/ec2-troubleShoot/pic3_attachToVPC.png)
     6. 在导航窗格中，选择 Subnets，然后选择您的子网。
-    7. 在 Route Table 选项卡上，验证 0.0.0.0/0 的路由是否为目的地以及您的 VPC 的 Internet 网关是否为目标。如果不是，请选择路由表的 ID (rtb-xxxxxxxx) 以导航到路由表的 Routes 选项卡，选择 Edit、Add another route，在 Destination 中输入 0.0.0.0/0，从 Target 中选择您的 Internet 网关，然后选择 Save。![图片4](/asstes/ec2-troubleShoot/pic4_routeTable.png)
+    7. 在 Route Table 选项卡上，验证 0.0.0.0/0 的路由是否为目的地以及您的 VPC 的 Internet 网关是否为目标。如果不是，请选择路由表的 ID (rtb-xxxxxxxx) 以导航到路由表的 Routes 选项卡，选择 Edit、Add another route，在 Destination 中输入 0.0.0.0/0，从 Target 中选择您的 Internet 网关，然后选择 Save。![图片4](/assets/ec2-troubleShoot/pic4_routeTable.png)
     
     如果您使用实例的 IPv6 地址连接到实例，请检查是否有一个路由可以将所有 IPv6 流量 (::/0) 指向 Internet 网关。如果没有，请添加一个以 ::/0 为目的地并指向 Internet 网关的路由。
 - [EC2-VPC] 检查子网的网络访问控制列表 (ACL)。该网络 ACL 必须允许适当的端口传输来自本地 IP 地址的入站和出站流量。默认网络 ACL 允许所有入站和出站流量。
     1. [打开 Amazon VPC 控制台](https://console.aws.amazon.com/vpc/)
     2. 在导航窗格中，选择 Subnets，然后选择您的子网。
-    3. 在 Summary 选项卡上，找到 Network ACL，然后选择其 ID (acl-xxxxxxxx)![图片5](/asstes/ec2-troubleShoot/pic5_acl.png)
+    3. 在 Summary 选项卡上，找到 Network ACL，然后选择其 ID (acl-xxxxxxxx)![图片5](/assets/ec2-troubleShoot/pic5_acl.png)
     4. 选择网络 ACL。对于 Inbound Rules，验证规则是否允许来自您的计算机的流量。如果不允许，请删除或修改阻止来自您的计算机的流量的规则。
-    5. 对于 Outbound Rules，验证规则是否允许到您的计算机的流量。如果不允许，请删除或修改阻止到您的计算机的流量的规则。![图片6](/asstes/ec2-troubleShoot/pic6_rules.png)
+    5. 对于 Outbound Rules，验证规则是否允许到您的计算机的流量。如果不允许，请删除或修改阻止到您的计算机的流量的规则。![图片6](/assets/ec2-troubleShoot/pic6_rules.png)
 
 - 如果您的计算机在企业网络上，请询问网络管理员内部防火墙是否允许端口 **22** ( **Linux** 实例) 或端口 **3389** (**Windows** 实例) 上来自您的计算机的入站和出站流量。
 - 如果您的计算机有防火墙，请验证其是否允许端口 **22** (**Linux** 实例) 或端口 **3389** (**Windows** 实例) 上来自您的计算机的入站和出站流量。
