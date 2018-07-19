@@ -1,4 +1,4 @@
-# 欢迎使用 Cmd Markdown 编辑阅读器
+# ec2 trouble shooting
 ------
 # 连接超时
 如果在连接到您的实例时看到以下错误消息：
