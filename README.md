@@ -1,2 +1,2 @@
-# awsSAforJoe
-first part is the ec2 connection problem checklist for joe's doc holder
+# aws ec2 trouble shooting
+aws ec2 trouble shooting
